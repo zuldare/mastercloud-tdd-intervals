@@ -75,6 +75,22 @@ public class IntervalTest {
     }
   }
 
+  @Test
+  public void givenTheSameIntervalsButDifferentType_ShouldReturnTrue(){
+    List<Pair<Interval, Interval>> intervalPairLists = Arrays.asList(
+            new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED),
+                    this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN))
+            ,
+
+            new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
+                    this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED))
+    );
+
+    for(Pair<Interval, Interval> intervalPair: intervalPairLists){
+      assertTrue(intervalPair.getValue0().intersects(intervalPair.getValue1()));
+    }
+  }
+
 
 
 
