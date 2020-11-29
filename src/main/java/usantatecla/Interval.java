@@ -13,13 +13,21 @@ public class Interval {
 
 	public boolean intersects(Interval other) {
 		assert other != null;
-		if (other.contains(this.min.value) || other.contains(this.max.value)){
+		if (other.contains(this.min.value) || other.contains(this.max.value))
 			return true;
-	    } else if (this.hasSameLimits(other)) {
+
+		if (this.hasSameLimits(other))
 			return true;
-		} else {
-			return false;
-		}
+
+		if (this.limitsAreContained(other))
+		   	return true;
+
+		return false;
+	}
+
+	private boolean limitsAreContained(Interval other){
+		return this.contains(other.min.value) || other.contains(this.min.value) ||
+			   this.contains(other.max.value) || other.contains(this.min.value);
 	}
 
 	private boolean hasSameLimits(Interval other){

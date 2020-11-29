@@ -81,7 +81,6 @@ public class IntervalTest {
             new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED),
                     this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN))
             ,
-
             new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
                     this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED))
     );
@@ -90,9 +89,6 @@ public class IntervalTest {
       assertTrue(intervalPair.getValue0().intersects(intervalPair.getValue1()));
     }
   }
-
-
-
 
   @Test
   public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
