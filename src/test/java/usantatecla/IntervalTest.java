@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -61,7 +60,7 @@ public class IntervalTest {
         (**)  | [**]
    */
   @Test
-  public void givenTheSameIntervals_ShouldReturnTrue(){
+  public void givenTheSameIntervalsSameTypes_ShouldReturnTrue(){
     List<Pair<Interval, Interval>> intervalPairLists = Arrays.asList(
             new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
                     this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN)),
