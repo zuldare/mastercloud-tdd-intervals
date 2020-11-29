@@ -1,7 +1,6 @@
 package usantatecla;
 
 import org.javatuples.Pair;
-import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
