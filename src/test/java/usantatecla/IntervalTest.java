@@ -19,13 +19,15 @@ public class IntervalTest {
   }
 
   @Test
-  public void testIntersects(){
+  public void givenIntervalsOneOnTheLeft_OtherOnTheRight_NotConnected_ShouldReturnFalse(){
     Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
     Point leftOther = new Point(10.0);
     Point rightOther = new Point(20.0);
 
     Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
-    assertNotNull(interval.intersects(intervalOther));
+    boolean result = interval.intersects(intervalOther);
+    assertNotNull(result);
+    assertFalse(result);
   }
 
   @Test
