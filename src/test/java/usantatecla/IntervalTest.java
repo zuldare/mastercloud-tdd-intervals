@@ -1,14 +1,21 @@
 package usantatecla;
 
+import org.javatuples.Pair;
+import org.javatuples.Triplet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class IntervalTest {
   
-  private Point left = new Point(-2.2);
-  private Point right = new Point(4.4);
+  private Point left;
+  private Point right;
   private IntervalBuilder intervalBuilder;
 
   @BeforeEach
@@ -18,43 +25,39 @@ public class IntervalTest {
     this.intervalBuilder = new IntervalBuilder();
   }
 
-
-
-  /*   Testing
-       (----)
-                (*****)
-   */
-  @Test
-  public void givenIntervalsOneOnTheLeft_OtherOnTheRight_NotConnected_ShouldReturnFalse(){
-    Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
-    Point leftOther = new Point(10.0);
-    Point rightOther = new Point(20.0);
-
-    Interval intervalOther = this.intervalBuilder.open(leftOther.getEquals()).open(rightOther.getEquals()).build();
-    boolean result = interval.intersects(intervalOther);
-    assertNotNull(result);
-    assertFalse(result);
+  private Interval createInterval(double left, double right, IntervalType type){
+    if(IntervalType.OPEN.equals(type)){
+      return this.intervalBuilder.open(left).open(right).build();
+    } else {
+      return this.intervalBuilder.closed(left).closed(right).build();
+    }
   }
 
-  /* Testing
-             (-----)
-      (****)
+  /*   Testing all combination
+       (--)         |      (--) | [--]
+            (**)    | (**)      |      (**)  ....
    */
   @Test
-  public void givenIntervalsOneOnTheRight_OtherOnTheLeft_NotConnected_ShouldReturnFalse(){
-    Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
-    Point leftOther = new Point(-20.0);
-    Point rightOther = new Point(-10.0);
-    Interval intervalOther = this.intervalBuilder.open(leftOther.getEquals()).open(rightOther.getEquals()).build();
-    assertFalse(interval.intersects(intervalOther));
+  public void givenIntervalsOneOnTheLeft_OtherOnTheRight_NotConnected_ShouldReturnFalseInAnyCombination(){
+    List<Pair<Interval, Interval>> solutionCheckers = Arrays.asList(
+          new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
+                  this.createInterval(10.0, 20.0, IntervalType.OPEN)),
+          new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED),
+                  this.createInterval(10.0, 20.0, IntervalType.CLOSED)),
+          new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
+                  this.createInterval(10.0, 20.0, IntervalType.CLOSED)),
+          new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED),
+                  this.createInterval(10.0, 20.0, IntervalType.OPEN))
+        );
+
+      for(Pair<Interval, Interval> condition: solutionCheckers){
+          assertThat( condition.getValue0().intersects(condition.getValue1()), is(Boolean.FALSE));
+      }
   }
 
   /* Testing ------
-        (------)
-        (******)
-     Testing ------
-        [------]
-        [******]
+        (--)  | [--]  | (--)
+        (**)  | [**]  | [**] .....
    */
   @Test
   public void givenTheSameIntervals_ShouldReturnTrue(){
