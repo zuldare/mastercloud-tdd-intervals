@@ -11,12 +11,19 @@ public class Interval {
 		this.max = max;
 	}
 
-	public boolean intersects(Interval other){
+	public boolean intersects(Interval other) {
 		assert other != null;
-		if (other.contains(this.min.value) || other.contains(this.max.value))
+		if (other.contains(this.min.value) || other.contains(this.max.value)){
 			return true;
-		else
+	    } else if (this.hasSameLimits(other)) {
+			return true;
+		} else {
 			return false;
+		}
+	}
+
+	private boolean hasSameLimits(Interval other){
+		return this.min.equals(other.min) || this.max.equals(other.max);
 	}
 
 	public boolean contains(double value) {

@@ -47,6 +47,13 @@ public class IntervalTest {
     assertFalse(interval.intersects(intervalOther));
   }
 
+  /* Testing ------
+        (------)
+        (******)
+     Testing ------
+        [------]
+        [******]
+   */
   @Test
   public void givenTheSameIntervals_ShouldReturnTrue(){
     Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
@@ -54,6 +61,9 @@ public class IntervalTest {
     boolean result = interval.intersects(intervalOther);
     assertTrue(result);
   }
+
+
+
 
   @Test
   public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
