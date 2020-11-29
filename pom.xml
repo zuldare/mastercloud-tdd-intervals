@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>usantatecla</groupId>
-    <artifactId>intervals</artifactId>
+    <artifactId>mastercloud-tdd-intervals</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
