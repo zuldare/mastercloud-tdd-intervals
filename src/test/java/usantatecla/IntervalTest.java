@@ -18,6 +18,10 @@ public class IntervalTest {
     this.intervalBuilder = new IntervalBuilder();
   }
 
+  /*   Testing
+       (----)
+                (*****)
+   */
   @Test
   public void givenIntervalsOneOnTheLeft_OtherOnTheRight_NotConnected_ShouldReturnFalse(){
     Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
@@ -28,6 +32,20 @@ public class IntervalTest {
     boolean result = interval.intersects(intervalOther);
     assertNotNull(result);
     assertFalse(result);
+  }
+
+  /* Testing
+             (-----)
+      (****)
+   */
+  @Test
+  public void givenIntervalsOneOnTheRight_OtherOnTheLeft_NotConnected_ShouldReturnFalse(){
+    Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
+    Point leftOther = new Point(-20.0);
+    Point rightOther = new Point(-10.0);
+    Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
+
+    assertFalse(interval.intersects(intervalOther));
   }
 
   @Test
