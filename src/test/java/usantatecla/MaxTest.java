@@ -22,18 +22,18 @@ public class MaxTest {
   }
 
   @Test
-  public void givenMaxWhenIsWithinWithLessValueThenTrue(){
-    assertTrue(this.max.isWithin(this.point.getLess()));
+  public void givenMaxWhenContainsWithLessValueThenTrue(){
+    assertTrue(this.max.contains(this.point.getLess()));
   }
 
   @Test
-  public void givenMaxWhenIsWithinWithEqualsValue(){
-    assertFalse(this.max.isWithin(this.point.getEquals()));
+  public void givenMaxWhenContainsWithEqualsValue(){
+    assertFalse(this.max.contains(this.point.getEquals()));
   }
 
   @Test
-  public void givenMaxWhenIsWithinWithGreaterValueThenTrue(){
-    assertFalse(this.max.isWithin(this.point.getGreater()));
+  public void givenMaxWhenContainsWithGreaterValueThenTrue(){
+    assertFalse(this.max.contains(this.point.getGreater()));
   }
  
 }

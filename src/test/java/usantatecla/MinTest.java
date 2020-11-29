@@ -22,18 +22,18 @@ public class MinTest {
   }
 
   @Test
-  public void givenMinWhenIsWithinWithLessValueThenTrue(){
-    assertFalse(this.min.isWithin(this.point.getLess()));
+  public void givenMinWhenContainsWithLessValueThenTrue(){
+    assertFalse(this.min.contains(this.point.getLess()));
   }
 
   @Test
-  public void givenMinWhenIsWithinWithEqualsValue(){
-    assertFalse(this.min.isWithin(this.point.getEquals()));
+  public void givenMinWhenContainsWithEqualsValue(){
+    assertFalse(this.min.contains(this.point.getEquals()));
   }
 
   @Test
-  public void givenMinWhenIsWithinWithGreaterValueThenTrue(){
-    assertTrue(this.min.isWithin(this.point.getGreater()));
+  public void givenMinWhenContainsWithGreaterValueThenTrue(){
+    assertTrue(this.min.contains(this.point.getGreater()));
   }
  
 }
