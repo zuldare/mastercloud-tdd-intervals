@@ -69,9 +69,15 @@ public class Interval {
 		return true;
 	}
 
+	public Object intersectsWithChainOfResponsibility(Interval value1) {
+		return null;
+	}
+
+
 	@Override
 	public String toString() {
 		return this.min.toString() + ", " + max.toString();
-	}	
+	}
+
 
 }
