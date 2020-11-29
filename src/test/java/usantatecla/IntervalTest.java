@@ -18,6 +18,8 @@ public class IntervalTest {
     this.intervalBuilder = new IntervalBuilder();
   }
 
+
+
   /*   Testing
        (----)
                 (*****)
@@ -28,7 +30,7 @@ public class IntervalTest {
     Point leftOther = new Point(10.0);
     Point rightOther = new Point(20.0);
 
-    Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
+    Interval intervalOther = this.intervalBuilder.open(leftOther.getEquals()).open(rightOther.getEquals()).build();
     boolean result = interval.intersects(intervalOther);
     assertNotNull(result);
     assertFalse(result);
@@ -43,7 +45,7 @@ public class IntervalTest {
     Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
     Point leftOther = new Point(-20.0);
     Point rightOther = new Point(-10.0);
-    Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
+    Interval intervalOther = this.intervalBuilder.open(leftOther.getEquals()).open(rightOther.getEquals()).build();
     assertFalse(interval.intersects(intervalOther));
   }
 
