@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,20 +57,22 @@ public class IntervalTest {
   }
 
   /* Testing ------
-        (--)  | [--]  | (--)
-        (**)  | [**]  | [**] .....
+        (--)  | [--]
+        (**)  | [**]
    */
   @Test
   public void givenTheSameIntervals_ShouldReturnTrue(){
-    Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
-    Interval intervalOther = (new IntervalBuilder()).open(left.getEquals()).open(right.getEquals()).build();
-    boolean result = interval.intersects(intervalOther);
-    assertTrue(result);
+    List<Pair<Interval, Interval>> intervalPairLists = Arrays.asList(
+            new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN),
+                    this.createInterval(left.getEquals(), right.getEquals(), IntervalType.OPEN)),
 
-    Interval interval2 = this.intervalBuilder.closed(left.getEquals()).closed(right.getEquals()).build();
-    Interval intervalOther2 = (new IntervalBuilder()).closed(left.getEquals()).closed(right.getEquals()).build();
-    boolean result2 = interval2.intersects(intervalOther2);
-    assertTrue(result);
+            new Pair<>(this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED),
+                    this.createInterval(left.getEquals(), right.getEquals(), IntervalType.CLOSED))
+    );
+
+    for(Pair<Interval, Interval> intervalPair: intervalPairLists){
+        assertTrue(intervalPair.getValue0().intersects(intervalPair.getValue1()));
+    }
   }
 
 
