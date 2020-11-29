@@ -11,6 +11,10 @@ public class Interval {
 		this.max = max;
 	}
 
+	public Boolean intersects(Interval other){
+		return null;
+	}
+
 	public boolean include(double value) {
 			return this.min.contains(value) && this.max.contains(value);
 	}
