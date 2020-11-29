@@ -1,10 +1,9 @@
 package usantatecla;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IntervalTest {
   
@@ -26,7 +25,7 @@ public class IntervalTest {
     Point rightOther = new Point(20.0);
 
     Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
-    interval.intersects(intervalOther);
+    assertNotNull(interval.intersects(intervalOther));
   }
   @Test
   public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
