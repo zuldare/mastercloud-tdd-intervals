@@ -22,7 +22,11 @@ public class IntervalTest {
   @Test
   public void testIntersects(){
     Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
-    interval.intersects(null);
+    Point leftOther = new Point(10.0);
+    Point rightOther = new Point(20.0);
+
+    Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
+    interval.intersects(intervalOther);
   }
   @Test
   public void givenIntervaOpenOpenlwhenIncludeWithIncludedValueThenTrue() {
