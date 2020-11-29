@@ -44,8 +44,15 @@ public class IntervalTest {
     Point leftOther = new Point(-20.0);
     Point rightOther = new Point(-10.0);
     Interval intervalOther = (new IntervalBuilder()).open(leftOther.getEquals()).open(rightOther.getEquals()).build();
-
     assertFalse(interval.intersects(intervalOther));
+  }
+
+  @Test
+  public void givenTheSameIntervals_ShouldReturnTrue(){
+    Interval interval = this.intervalBuilder.open(left.getEquals()).open(right.getEquals()).build();
+    Interval intervalOther = (new IntervalBuilder()).open(left.getEquals()).open(right.getEquals()).build();
+    boolean result = interval.intersects(intervalOther);
+    assertTrue(result);
   }
 
   @Test
