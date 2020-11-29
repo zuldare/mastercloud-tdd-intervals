@@ -60,6 +60,11 @@ public class IntervalTest {
     Interval intervalOther = (new IntervalBuilder()).open(left.getEquals()).open(right.getEquals()).build();
     boolean result = interval.intersects(intervalOther);
     assertTrue(result);
+
+    Interval interval2 = this.intervalBuilder.closed(left.getEquals()).closed(right.getEquals()).build();
+    Interval intervalOther2 = (new IntervalBuilder()).closed(left.getEquals()).closed(right.getEquals()).build();
+    boolean result2 = interval2.intersects(intervalOther2);
+    assertTrue(result);
   }
 
 
